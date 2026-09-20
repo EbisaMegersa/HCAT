@@ -1,0 +1,6 @@
+{
+  "name": "HopeCat ($HCAT)",
+  "description": "HopeCat ($HCAT) is a community-driven meme token built around memes, creativity and hope.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
