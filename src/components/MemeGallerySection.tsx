@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import { MascotLogo } from './MascotLogo';
 
 interface MemeItem {
   id: number;
   title: string;
   category: string;
   tagline: string;
+  imageUrl: string;
   gradient: string;
   accentColor: string;
 }
@@ -20,6 +20,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'HOPE NEVER DIES',
       category: 'VIRAL',
       tagline: 'When the market dips but HopeCat pride stays bulletproof.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-0a884790-1d7f-4575-bd5d-a98bb031d67e.jpg',
       gradient: 'from-amber-500/20 via-black to-slate-950',
       accentColor: 'border-amber-500/40 text-amber-400',
     },
@@ -28,6 +29,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'DIAMOND PAWS',
       category: 'WALLPAPERS',
       tagline: 'High resolution desktop wallpaper for true $HCAT believers.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-fb5a189d-b4b9-43b7-8fdb-457653057ad6.jpg',
       gradient: 'from-orange-600/20 via-black to-slate-950',
       accentColor: 'border-orange-500/40 text-orange-400',
     },
@@ -36,6 +38,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'COMMUNITY PRIDE',
       category: 'STICKERS',
       tagline: 'Official Telegram sticker pack centerpiece.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-0cb3c16b-e4e8-4143-beaa-989099f18c75.jpg',
       gradient: 'from-purple-600/20 via-black to-slate-950',
       accentColor: 'border-purple-500/40 text-purple-400',
     },
@@ -44,6 +47,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'SMALL CAT BIG DREAMS',
       category: 'VIRAL',
       tagline: 'The iconic mantra taking over Web3 timelines.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-ff55b0bc-c546-486f-b8a7-686ef0074d72.jpg',
       gradient: 'from-emerald-600/20 via-black to-slate-950',
       accentColor: 'border-emerald-500/40 text-emerald-400',
     },
@@ -52,6 +56,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'MOONBOUND FELINE',
       category: 'WALLPAPERS',
       tagline: 'Ready for interstellar exploration with zero tax friction.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-0302701b-8485-4e54-a8bc-e12843bde46b.jpg',
       gradient: 'from-amber-600/20 via-black to-slate-950',
       accentColor: 'border-amber-400 text-amber-300',
     },
@@ -60,6 +65,7 @@ export const MemeGallerySection: React.FC = () => {
       title: 'ZEN CAT LORE',
       category: 'STICKERS',
       tagline: 'Unshakable calm amidst market volatility.',
+      imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-dd885b27-d2b5-47d0-ba7e-18b51f0d0d39.jpg',
       gradient: 'from-cyan-600/20 via-black to-slate-950',
       accentColor: 'border-cyan-500/40 text-cyan-400',
     },
@@ -112,12 +118,12 @@ export const MemeGallerySection: React.FC = () => {
             <div
               key={meme.id}
               onClick={() => setSelectedMeme(meme)}
-              className={`group cursor-pointer p-8 rounded-3xl bg-gradient-to-b ${meme.gradient} border border-slate-800 hover:border-amber-500/60 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative overflow-hidden flex flex-col justify-between`}
+              className={`group cursor-pointer rounded-3xl bg-gradient-to-b ${meme.gradient} border border-slate-800 hover:border-amber-500/60 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative overflow-hidden flex flex-col justify-between`}
             >
               <div className="absolute top-0 right-0 w-32 h-32 bg-amber-500/5 rounded-bl-full pointer-events-none group-hover:bg-amber-500/20 transition-colors" />
 
-              <div className="flex items-center justify-between mb-8">
-                <span className={`px-3 py-1 rounded-xl bg-black border font-mono text-xs font-black ${meme.accentColor}`}>
+              <div className="p-6 pb-0 flex items-center justify-between relative z-10">
+                <span className={`px-3 py-1 rounded-xl bg-black/80 border font-mono text-xs font-black ${meme.accentColor}`}>
                   {meme.category}
                 </span>
                 <span className="text-xs font-mono text-slate-500 group-hover:text-amber-400 transition-colors">
@@ -125,25 +131,30 @@ export const MemeGallerySection: React.FC = () => {
                 </span>
               </div>
 
-              {/* Meme Card Visual Art Preview */}
-              <div className="py-12 flex flex-col items-center justify-center relative my-4">
-                <div className="absolute inset-0 bg-black/40 rounded-2xl backdrop-blur-sm border border-slate-800/80 group-hover:border-amber-500/30 transition-all" />
-                <div className="relative z-10 transform group-hover:scale-110 transition-transform duration-500">
-                  <MascotLogo size={100} glow={true} />
-                </div>
-                <div className="relative z-10 mt-4 text-center">
-                  <h4 className="text-lg font-black text-white tracking-wide uppercase">
-                    {meme.title}
-                  </h4>
+              {/* Meme Image Preview Container */}
+              <div className="p-6">
+                <div className="relative w-full aspect-square rounded-2xl overflow-hidden border border-slate-800/80 group-hover:border-amber-500/40 bg-slate-950 shadow-lg">
+                  <img
+                    src={meme.imageUrl}
+                    alt={meme.title}
+                    className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+                    referrerPolicy="no-referrer"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-60 group-hover:opacity-30 transition-opacity" />
+                  <div className="absolute bottom-3 left-3 right-3 text-left">
+                    <h4 className="text-sm sm:text-base font-black text-white tracking-wide uppercase drop-shadow-md">
+                      {meme.title}
+                    </h4>
+                  </div>
                 </div>
               </div>
 
-              <div>
+              <div className="px-6 pb-6 pt-0">
                 <p className="text-slate-400 text-xs sm:text-sm font-medium leading-relaxed mb-6">
                   {meme.tagline}
                 </p>
                 <div className="pt-4 border-t border-slate-900 flex items-center justify-between text-xs font-bold text-amber-400">
-                  <span>CLICK TO VIEW & DOWNLOAD</span>
+                  <span>CLICK TO VIEW FULLSCREEN</span>
                   <span className="group-hover:translate-x-1 transition-transform">→</span>
                 </div>
               </div>
@@ -157,52 +168,43 @@ export const MemeGallerySection: React.FC = () => {
       {selectedMeme && (
         <div 
           onClick={() => setSelectedMeme(null)}
-          className="fixed inset-0 z-50 bg-black/90 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300"
+          className="fixed inset-0 z-50 bg-black/95 backdrop-blur-xl flex items-center justify-center p-4 animate-in fade-in duration-300"
         >
           <div 
             onClick={(e) => e.stopPropagation()}
-            className="max-w-xl w-full p-8 sm:p-12 rounded-3xl bg-black border-2 border-amber-500/50 shadow-[0_0_60px_rgba(245,158,11,0.3)] relative text-center space-y-6"
+            className="max-w-2xl w-full p-6 sm:p-8 rounded-3xl bg-black border-2 border-amber-500/50 shadow-[0_0_60px_rgba(245,158,11,0.4)] relative text-center space-y-6"
           >
             <button
               onClick={() => setSelectedMeme(null)}
-              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center font-black"
+              className="absolute top-4 right-4 w-10 h-10 rounded-full bg-slate-900 border border-slate-800 text-slate-300 hover:text-white flex items-center justify-center font-black z-20"
             >
               ✕
             </button>
 
-            <span className="inline-block px-3 py-1 rounded-xl bg-slate-900 border border-amber-500/30 font-mono text-xs font-black text-amber-400">
-              {selectedMeme.category}
-            </span>
-
-            <div className="py-8 flex justify-center">
-              <MascotLogo size={150} glow={true} />
+            <div className="flex items-center justify-between pr-10">
+              <span className="px-3 py-1 rounded-xl bg-slate-900 border border-amber-500/30 font-mono text-xs font-black text-amber-400">
+                {selectedMeme.category}
+              </span>
+              <span className="text-xs font-mono text-slate-400">#HCAT-0{selectedMeme.id}</span>
             </div>
 
-            <div className="space-y-2">
-              <h3 className="text-3xl font-black text-white uppercase tracking-tight">
+            {/* Modal Image */}
+            <div className="relative w-full aspect-square sm:aspect-[4/3] rounded-2xl overflow-hidden border border-amber-500/30 bg-slate-950 shadow-2xl">
+              <img
+                src={selectedMeme.imageUrl}
+                alt={selectedMeme.title}
+                className="w-full h-full object-contain"
+                referrerPolicy="no-referrer"
+              />
+            </div>
+
+            <div className="space-y-2 text-left">
+              <h3 className="text-2xl sm:text-3xl font-black text-white uppercase tracking-tight">
                 {selectedMeme.title}
               </h3>
               <p className="text-slate-300 text-sm font-medium leading-relaxed">
                 {selectedMeme.tagline}
               </p>
-            </div>
-
-            <div className="pt-4 flex items-center justify-center gap-4">
-              <button
-                onClick={() => {
-                  navigator.clipboard.writeText(`https://hopecat.vip - $HCAT Meme: ${selectedMeme.title}`);
-                  alert('Meme link copied to clipboard!');
-                }}
-                className="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-black font-black text-xs tracking-wider uppercase shadow-[0_0_20px_rgba(245,158,11,0.4)] transition-all"
-              >
-                COPY MEME LINK
-              </button>
-              <button
-                onClick={() => setSelectedMeme(null)}
-                className="px-6 py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-slate-300 border border-slate-800 font-bold text-xs tracking-wider uppercase transition-all"
-              >
-                CLOSE
-              </button>
             </div>
           </div>
         </div>

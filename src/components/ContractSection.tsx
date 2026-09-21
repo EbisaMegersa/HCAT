@@ -64,8 +64,15 @@ export const ContractSection: React.FC = () => {
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 text-xs font-mono text-slate-400 pt-2">
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center gap-3">
-                <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-                <span>Network: Ethereum / Base</span>
+                <div className="w-6 h-6 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center overflow-hidden shrink-0">
+                  <img 
+                    src="https://cdn.phototourl.com/member/2026-09-21-b578c1ab-233c-492c-942f-371e8bb10aec.png" 
+                    alt="Binance Network Logo" 
+                    className="w-full h-full object-cover"
+                    referrerPolicy="no-referrer"
+                  />
+                </div>
+                <span>Network: BSC / BEP20</span>
               </div>
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-orange-400 animate-pulse" />
