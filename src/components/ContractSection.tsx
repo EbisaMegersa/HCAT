@@ -80,7 +80,7 @@ export const ContractSection: React.FC = () => {
               </div>
               <div className="p-4 rounded-xl bg-slate-950 border border-slate-800/80 flex items-center gap-3">
                 <div className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-                <span>Tax: 0% / 0%</span>
+                <span>Tax: 2% / 2%</span>
               </div>
             </div>
 
