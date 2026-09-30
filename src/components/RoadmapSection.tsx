@@ -66,9 +66,9 @@ export const RoadmapSection: React.FC = () => {
         'Launching of token - Fair launch',
         'Liquidity lock + Ownership renounce',
       ],
-      status: 'IN PROGRESS',
-      badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
-      accentBorder: 'hover:border-amber-500/60',
+      status: 'COMPLETED',
+      badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+      accentBorder: 'hover:border-emerald-500/60',
     },
     {
       phase: 'PHASE 2',
@@ -82,9 +82,9 @@ export const RoadmapSection: React.FC = () => {
         'Fire screener listing - CoinMarketCap & CoinGecko fast-track listing',
         'First phase of marketing - Twitter trends, Telegram calls, YouTube reviews',
       ],
-      status: 'UPCOMING',
-      badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
-      accentBorder: 'hover:border-cyan-500/60',
+      status: 'COMPLETED',
+      badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+      accentBorder: 'hover:border-emerald-500/60',
     },
     {
       phase: 'PHASE 3',
@@ -98,9 +98,9 @@ export const RoadmapSection: React.FC = () => {
         'CEX listing - first tier 2 / tier 3 CEX (BitMart, MEXC, LBank)',
         'Community utilities - staking, holder rewards, leaderboard',
       ],
-      status: 'PLANNED',
-      badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
-      accentBorder: 'hover:border-purple-500/60',
+      status: 'IN PROGRESS',
+      badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+      accentBorder: 'hover:border-amber-500/60',
     },
     {
       phase: 'PHASE 4',
@@ -160,16 +160,49 @@ export const RoadmapSection: React.FC = () => {
 
         {/* Phase Pill Navigation Overview */}
         <div className="flex flex-wrap items-center justify-center gap-2 mb-16 max-w-4xl mx-auto">
-          {roadmapPhases.map((phase, idx) => (
-            <div
-              key={idx}
-              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-xs font-mono font-bold text-slate-300 shadow-sm"
-            >
-              <span className="w-2 h-2 rounded-full bg-amber-400" />
-              <span>{phase.phase}:</span>
-              <span className="text-amber-400 uppercase">{phase.title}</span>
-            </div>
-          ))}
+          {roadmapPhases.map((phase, idx) => {
+            const isCompleted = phase.status === 'COMPLETED';
+            const isInProgress = phase.status === 'IN PROGRESS';
+            return (
+              <div
+                key={idx}
+                className={`flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border text-xs font-mono font-bold shadow-sm transition-all ${
+                  isCompleted
+                    ? 'border-emerald-500/40 text-emerald-300 shadow-[0_0_12px_rgba(52,211,153,0.15)]'
+                    : isInProgress
+                    ? 'border-amber-500/50 text-amber-300 shadow-[0_0_12px_rgba(245,158,11,0.2)]'
+                    : 'border-slate-800 text-slate-400'
+                }`}
+              >
+                <span
+                  className={`w-2 h-2 rounded-full ${
+                    isCompleted
+                      ? 'bg-emerald-400 shadow-[0_0_6px_#34d399]'
+                      : isInProgress
+                      ? 'bg-amber-400 animate-pulse shadow-[0_0_6px_#fbbf24]'
+                      : 'bg-slate-600'
+                  }`}
+                />
+                <span>{phase.phase}:</span>
+                <span
+                  className={
+                    isCompleted
+                      ? 'text-emerald-400 uppercase'
+                      : isInProgress
+                      ? 'text-amber-400 uppercase'
+                      : 'text-slate-400 uppercase'
+                  }
+                >
+                  {phase.title}
+                </span>
+                {isCompleted && (
+                  <span className="text-[10px] text-emerald-300 bg-emerald-500/20 px-1 rounded font-bold">
+                    ✓
+                  </span>
+                )}
+              </div>
+            );
+          })}
         </div>
 
         {/* Cinematic Vertical Timeline Container */}
@@ -200,7 +233,15 @@ export const RoadmapSection: React.FC = () => {
                   } gap-8 lg:gap-16`}
                 >
                   {/* Central Node Circle */}
-                  <div className="absolute left-8 lg:left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-black border-2 border-amber-400 text-amber-400 font-black text-sm flex items-center justify-center shadow-[0_0_25px_rgba(245,158,11,0.6)] z-20 shrink-0">
+                  <div
+                    className={`absolute left-8 lg:left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-black border-2 ${
+                      phase.status === 'COMPLETED'
+                        ? 'border-emerald-400 text-emerald-400 shadow-[0_0_25px_rgba(52,211,153,0.6)]'
+                        : phase.status === 'IN PROGRESS'
+                        ? 'border-amber-400 text-amber-400 shadow-[0_0_25px_rgba(245,158,11,0.6)] animate-pulse'
+                        : 'border-slate-800 text-slate-500 shadow-none'
+                    } font-black text-sm flex items-center justify-center z-20 shrink-0`}
+                  >
                     <span className="font-mono">{phase.nodeNumber}</span>
                   </div>
 
@@ -241,7 +282,13 @@ export const RoadmapSection: React.FC = () => {
                       <ul className="space-y-3 pt-4 border-t border-slate-900">
                         {phase.items.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 text-slate-300 text-sm font-medium">
-                            <span className="text-amber-400 font-bold shrink-0 mt-0.5">✦</span>
+                            <span
+                              className={`font-bold shrink-0 mt-0.5 ${
+                                phase.status === 'COMPLETED' ? 'text-emerald-400' : 'text-amber-400'
+                              }`}
+                            >
+                              {phase.status === 'COMPLETED' ? '✓' : '✦'}
+                            </span>
                             <span className="leading-snug">{item}</span>
                           </li>
                         ))}
