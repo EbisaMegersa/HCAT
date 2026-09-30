@@ -55,7 +55,7 @@ export const MemeGallerySection: React.FC = () => {
       id: 5,
       title: 'MOONBOUND FELINE',
       category: 'WALLPAPERS',
-      tagline: 'Ready for interstellar exploration with zero tax friction.',
+      tagline: 'Ready for interstellar exploration with ecosystem growth power.',
       imageUrl: 'https://cdn.phototourl.com/member/2026-09-21-0302701b-8485-4e54-a8bc-e12843bde46b.jpg',
       gradient: 'from-amber-600/20 via-black to-slate-950',
       accentColor: 'border-amber-400 text-amber-300',

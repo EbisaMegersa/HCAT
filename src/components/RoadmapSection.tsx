@@ -1,6 +1,18 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { MascotLogo } from './MascotLogo';
 
+interface RoadmapPhaseItem {
+  phase: string;
+  nodeNumber: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  items: string[];
+  status: string;
+  badgeColor: string;
+  accentBorder: string;
+}
+
 export const RoadmapSection: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [lineHeight, setLineHeight] = useState(0);
@@ -13,7 +25,7 @@ export const RoadmapSection: React.FC = () => {
       const elementTop = rect.top;
       const elementHeight = rect.height;
 
-      let progress = (windowHeight - elementTop) / (elementHeight + windowHeight * 0.3);
+      let progress = (windowHeight - elementTop) / (elementHeight + windowHeight * 0.2);
       progress = Math.max(0, Math.min(1, progress));
       setLineHeight(progress * 100);
     };
@@ -23,78 +35,150 @@ export const RoadmapSection: React.FC = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const roadmapPhases = [
+  const roadmapPhases: RoadmapPhaseItem[] = [
     {
-      phase: 'PHASE 01',
-      title: 'THE BEGINNING',
-      subtitle: 'Establishing the Foundation',
-      description: 'Laying the groundwork for the HopeCat universe with official brand assets, community channels, viral meme creation, and smart contract verification.',
+      phase: 'PHASE 0',
+      nodeNumber: '00',
+      title: 'FOUNDATION',
+      subtitle: 'Core Architecture, Security & Brand Identity',
+      description: 'Establishing the foundational pillars for HopeCat with audited smart contracts, verified tokenomics, transparent KYC, and official global communication channels.',
       items: [
-        'Official smart contract deployment',
-        'Website launch & visual identity rollout',
-        'Telegram & X community formation',
-        'Meme generation campaigns & stickers',
+        'Brand identity, logo, website, whitepaper / litepaper',
+        'Clear tokenomics, supply, taxes, distribution',
+        'Smart contract deployment + Audit (Certik / Cyberscope / SolidProof)',
+        'KYC / Doxx for team - builds trust',
+        'Socials setup: X, Telegram, Discord, TikTok',
       ],
-      status: 'IN PROGRESS / PLANNED',
+      status: 'COMPLETED',
+      badgeColor: 'bg-emerald-500/10 text-emerald-400 border-emerald-500/30',
+      accentBorder: 'hover:border-emerald-500/60',
+    },
+    {
+      phase: 'PHASE 1',
+      nodeNumber: '01',
+      title: 'COMMUNITY & LAUNCH',
+      subtitle: 'Grassroots Army, KOLs & Fair Launch',
+      description: 'Building an active community of raiders, moderators, and creators. Executing a secure, transparent fair launch with locked liquidity and renounced ownership.',
+      items: [
+        'Community building - mods, raiders, daily content, memes',
+        'Influencer / KOL onboarding',
+        'Whitelist',
+        'Launching of token - Fair launch',
+        'Liquidity lock + Ownership renounce',
+      ],
+      status: 'IN PROGRESS',
       badgeColor: 'bg-amber-500/10 text-amber-400 border-amber-500/30',
+      accentBorder: 'hover:border-amber-500/60',
     },
     {
-      phase: 'PHASE 02',
-      title: 'COMMUNITY EXPANSION',
-      subtitle: 'Growing the Pride',
-      description: 'Scaling our global presence through creative content campaigns, interactive community events, collaborative art, and ecosystem partnerships.',
+      phase: 'PHASE 2',
+      nodeNumber: '02',
+      title: 'VISIBILITY',
+      subtitle: 'Screeners, Dex Trending & Viral Marketing',
+      description: 'Expanding reach across decentralized data aggregators with verified listings, fast-tracked coin trackers, and high-frequency influencer reviews.',
       items: [
-        'Global community engagement events',
-        'Creative art & meme contests',
-        'Content creator & influencer collaborations',
-        'Expanded ecosystem utilities & lore',
+        'DexTools listing + trending',
+        'Dexscreener listing + trending & logo update',
+        'Fire screener listing - CoinMarketCap & CoinGecko fast-track listing',
+        'First phase of marketing - Twitter trends, Telegram calls, YouTube reviews',
       ],
-      status: 'PLANNED',
-      badgeColor: 'bg-orange-500/10 text-orange-400 border-orange-500/30',
+      status: 'UPCOMING',
+      badgeColor: 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30',
+      accentBorder: 'hover:border-cyan-500/60',
     },
     {
-      phase: 'PHASE 03',
-      title: 'THE NEXT CHAPTER',
-      subtitle: 'Unleashing the Full Universe',
-      description: 'Pushing the boundaries of meme coin culture with community-driven initiatives, interactive experiences, and long-term ecosystem evolution.',
+      phase: 'PHASE 3',
+      nodeNumber: '03',
+      title: 'GROWTH',
+      subtitle: 'CEX Listings, Partnerships & Staking',
+      description: 'Scaling into the wider Web3 ecosystem with top-tier marketing campaigns, key launchpad partnerships, initial CEX listings, and staking utilities.',
       items: [
-        'Advanced community-driven initiatives',
-        'Interactive HopeCat universe expansions',
-        'Ecosystem governance and milestones',
-        'Continuous community rewards & events',
+        'Second phase of marketing - bigger KOLs, paid ads, meme contests, AMA tour',
+        'Partnerships with other projects, launchpads, communities',
+        'CEX listing - first tier 2 / tier 3 CEX (BitMart, MEXC, LBank)',
+        'Community utilities - staking, holder rewards, leaderboard',
       ],
       status: 'PLANNED',
-      badgeColor: 'bg-red-500/10 text-red-400 border-red-500/30',
+      badgeColor: 'bg-purple-500/10 text-purple-400 border-purple-500/30',
+      accentBorder: 'hover:border-purple-500/60',
+    },
+    {
+      phase: 'PHASE 4',
+      nodeNumber: '04',
+      title: 'UTILITY LAUNCH',
+      subtitle: 'NFTs, Trading Bots & Charity Initiative',
+      description: 'Deploying flagship decentralized applications, exclusive HopeCat NFT series, automated community utility bots, and launching the Hope Foundation.',
+      items: [
+        'Hopecat NFT collection / Staking dApp',
+        'Telegram bot (trading bot, raid bot, AI bot)',
+        'Merch store or Charity initiative - HOPE FOUNDATION',
+      ],
+      status: 'PLANNED',
+      badgeColor: 'bg-rose-500/10 text-rose-400 border-rose-500/30',
+      accentBorder: 'hover:border-rose-500/60',
+    },
+    {
+      phase: 'PHASE 5',
+      nodeNumber: '05',
+      title: 'EXPANSION',
+      subtitle: 'Tier 1 CEX, Real-World Adoption & Roadmap 2.0',
+      description: 'Taking $HCAT to maximum global visibility with premier tier-1 centralized exchange listings, real-world commercial brand integrations, and unveiling Roadmap 2.0.',
+      items: [
+        'Tier 1 CEX target',
+        'Real-world partnership',
+        'Roadmap 2.0',
+      ],
+      status: 'FUTURE VISION',
+      badgeColor: 'bg-yellow-500/10 text-yellow-400 border-yellow-500/30',
+      accentBorder: 'hover:border-yellow-500/60',
     },
   ];
 
   return (
     <section id="roadmap" ref={containerRef} className="py-28 relative bg-black overflow-hidden border-b border-slate-900">
       {/* Background ambient lighting */}
-      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-amber-500/10 rounded-full blur-[150px] pointer-events-none" />
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[700px] bg-amber-500/10 rounded-full blur-[160px] pointer-events-none" />
+      <div className="absolute bottom-1/4 right-10 w-[500px] h-[500px] bg-orange-600/10 rounded-full blur-[150px] pointer-events-none" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         
         {/* Section Header */}
-        <div className="text-center max-w-3xl mx-auto space-y-4 mb-24">
+        <div className="text-center max-w-3xl mx-auto space-y-4 mb-16 sm:mb-20">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-black border border-amber-500/30 text-amber-400 text-xs font-black tracking-widest uppercase shadow-md">
             STRATEGIC ROADMAP
           </div>
           <h2 className="text-4xl sm:text-6xl font-black text-white tracking-tight uppercase">
             THE <span className="text-transparent bg-clip-text bg-gradient-to-r from-amber-400 via-yellow-200 to-amber-500">HOPECAT</span> JOURNEY
           </h2>
-          <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium italic">
+          <p className="text-slate-300 text-base sm:text-lg leading-relaxed font-medium">
+            An efficient, step-by-step masterplan from foundation and fair launch to global Tier 1 expansion.
+          </p>
+          <p className="text-amber-400/90 text-sm font-semibold italic">
             "Every great story starts with one small step."
           </p>
         </div>
 
+        {/* Phase Pill Navigation Overview */}
+        <div className="flex flex-wrap items-center justify-center gap-2 mb-16 max-w-4xl mx-auto">
+          {roadmapPhases.map((phase, idx) => (
+            <div
+              key={idx}
+              className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-950/80 border border-slate-800 text-xs font-mono font-bold text-slate-300 shadow-sm"
+            >
+              <span className="w-2 h-2 rounded-full bg-amber-400" />
+              <span>{phase.phase}:</span>
+              <span className="text-amber-400 uppercase">{phase.title}</span>
+            </div>
+          ))}
+        </div>
+
         {/* Cinematic Vertical Timeline Container */}
-        <div className="relative max-w-5xl mx-auto pb-20">
+        <div className="relative max-w-5xl mx-auto pb-16">
           
           {/* Central Vertical Track Line (Desktop center, Mobile left) */}
           <div className="absolute left-8 lg:left-1/2 top-0 bottom-0 w-1 bg-slate-900 -translate-x-1/2 rounded-full overflow-hidden">
             <div
-              className="w-full bg-gradient-to-b from-amber-400 via-yellow-300 to-amber-500 shadow-[0_0_20px_#f59e0b] transition-all duration-300 rounded-full"
+              className="w-full bg-gradient-to-b from-emerald-400 via-amber-400 to-yellow-500 shadow-[0_0_20px_#f59e0b] transition-all duration-300 rounded-full"
               style={{ height: `${lineHeight}%` }}
             />
             {/* Traveling glowing particle */}
@@ -117,7 +201,7 @@ export const RoadmapSection: React.FC = () => {
                 >
                   {/* Central Node Circle */}
                   <div className="absolute left-8 lg:left-1/2 -translate-x-1/2 w-14 h-14 rounded-full bg-black border-2 border-amber-400 text-amber-400 font-black text-sm flex items-center justify-center shadow-[0_0_25px_rgba(245,158,11,0.6)] z-20 shrink-0">
-                    <span className="font-mono">{`0${idx + 1}`}</span>
+                    <span className="font-mono">{phase.nodeNumber}</span>
                   </div>
 
                   {/* Spacer for alternating layout on desktop */}
@@ -126,7 +210,7 @@ export const RoadmapSection: React.FC = () => {
                   {/* Card Container */}
                   <div className="w-full lg:w-1/2 pl-16 lg:pl-0">
                     <div
-                      className={`group p-8 sm:p-10 rounded-3xl bg-black backdrop-blur-2xl border border-slate-800 hover:border-amber-500/60 transition-all duration-500 hover:-translate-y-2 shadow-2xl relative overflow-hidden ${
+                      className={`group p-8 sm:p-10 rounded-3xl bg-black backdrop-blur-2xl border border-slate-800 ${phase.accentBorder} transition-all duration-500 hover:-translate-y-2 shadow-2xl relative overflow-hidden ${
                         isEven ? 'lg:mr-8' : 'lg:ml-8'
                       }`}
                     >
@@ -141,7 +225,7 @@ export const RoadmapSection: React.FC = () => {
                         </span>
                       </div>
 
-                      <div className="space-y-1 mb-6">
+                      <div className="space-y-1 mb-4">
                         <h3 className="text-2xl sm:text-3xl font-black text-white tracking-wide uppercase">
                           {phase.title}
                         </h3>
@@ -150,15 +234,15 @@ export const RoadmapSection: React.FC = () => {
                         </p>
                       </div>
 
-                      <p className="text-slate-400 text-sm leading-relaxed font-medium mb-8">
+                      <p className="text-slate-400 text-sm leading-relaxed font-medium mb-6">
                         {phase.description}
                       </p>
 
-                      <ul className="space-y-3.5 pt-4 border-t border-slate-900">
+                      <ul className="space-y-3 pt-4 border-t border-slate-900">
                         {phase.items.map((item, i) => (
                           <li key={i} className="flex items-start gap-3 text-slate-300 text-sm font-medium">
-                            <span className="text-amber-400 font-bold">✓</span>
-                            <span>{item}</span>
+                            <span className="text-amber-400 font-bold shrink-0 mt-0.5">✦</span>
+                            <span className="leading-snug">{item}</span>
                           </li>
                         ))}
                       </ul>
@@ -199,4 +283,3 @@ export const RoadmapSection: React.FC = () => {
     </section>
   );
 };
-

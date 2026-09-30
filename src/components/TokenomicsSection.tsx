@@ -26,9 +26,9 @@ export const TokenomicsSection: React.FC = () => {
     },
     {
       label: 'BUY / SELL TAX',
-      value: '2% / 2%',
-      desc: 'Low 2% buy and 2% sell tax dedicated to marketing, liquidity pool support, and ecosystem growth.',
-      badge: '2% / 2% TAX',
+      value: '3% / 4%',
+      desc: 'Low 3% buy tax and 4% sell tax dedicated to marketing, liquidity pool support, and ecosystem growth.',
+      badge: '3% BUY / 4% SELL',
     },
     {
       label: 'COMMUNITY & ECOSYSTEM',
@@ -56,7 +56,7 @@ export const TokenomicsSection: React.FC = () => {
           </h2>
 
           <p className="text-slate-300 text-base sm:text-lg leading-relaxed pt-2">
-            Designed with absolute clarity, low 2% buy/sell tax, and robust security for the entire $HCAT holder community.
+            Designed with absolute clarity, 3% buy and 4% sell tax, and robust security for the entire $HCAT holder community.
           </p>
         </div>
 

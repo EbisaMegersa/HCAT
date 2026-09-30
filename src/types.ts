@@ -1,9 +1,13 @@
 export interface RoadmapPhase {
-  id: string;
   phase: string;
+  nodeNumber: string;
   title: string;
+  subtitle: string;
+  description: string;
   items: string[];
   status: string;
+  badgeColor: string;
+  accentBorder?: string;
 }
 
 export interface FeatureCard {
